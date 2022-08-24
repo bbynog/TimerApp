@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { styles } from './Home.styles';
@@ -16,14 +16,14 @@ export const HomeScreen = ({}: HomeScreenProps) => {
 
   const intervalRef = useRef<NodeJS.Timer>();
 
-  const startTimer = () => {
-    setIsCounting(true);
-  };
-
-  const stopTimer = () => {
-    setIsCounting(false);
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
+  const playTimer = () => {
+    if (isCounting) {
+      setIsCounting(false);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    } else {
+      setIsCounting(true);
     }
   };
 
@@ -33,7 +33,7 @@ export const HomeScreen = ({}: HomeScreenProps) => {
     if (isCounting) {
       const NowInterval = setInterval(() => {
         formatAndSetTime(now);
-        now.add(10, 'milliseconds');
+        now.add(moment().diff(now, 'milliseconds'), 'milliseconds');
       }, 10);
 
       intervalRef.current = NowInterval;
@@ -46,10 +46,12 @@ export const HomeScreen = ({}: HomeScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.counterContainer}>
+      <TouchableOpacity onPress={playTimer} style={styles.counterContainer}>
         <Text style={styles.counterText}>{presentationNow}</Text>
-        <Button title={'Start'} onPress={startTimer} />
-        <Button title={'Stop'} onPress={stopTimer} />
+      </TouchableOpacity>
+      <View style={styles.actionsContainer}>
+        {/* <Button title={'Start'} onPress={startTimer} /> */}
+        {/* <Button title={'Stop'} onPress={stopTimer} /> */}
       </View>
     </SafeAreaView>
   );

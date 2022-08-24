@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { theme } from 'theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,6 +7,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  counterContainer: {},
-  counterText: {},
+  counterContainer: {
+    borderRadius: 150,
+    borderColor: theme.colors.primary,
+    borderWidth: 3,
+    height: 300,
+    width: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  counterText: {
+    fontSize: 40,
+  },
+  actionsContainer: {},
 });
