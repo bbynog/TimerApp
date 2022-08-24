@@ -1,13 +1,15 @@
 import { DateFormat } from 'types';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 export const formatDateTo = (
   format: DateFormat,
-  date?: Date | string
+  date?: Date | string | Moment
 ): string => {
   switch (format) {
     case DateFormat.EXHIBITION_TIME:
       return moment(date).format('HH:mm:ss');
+    case DateFormat.EXHIBITION_TIME_MILLIES:
+      return moment(date).format('HH:mm:ss:SS');
     case DateFormat.LOCAL_DATE:
       return moment(date).format('YYYY-MM-DD');
     case DateFormat.LOCAL_DATE_TIME:
