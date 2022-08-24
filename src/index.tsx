@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, LogBox } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { theme } from './theme';
-import { DrawerNavigator } from 'navigation/DrawerNavigator/DrawerNavigator';
+import { BottomTabNavigator } from 'navigation/TabNavigator/TabNavigator';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -65,7 +65,7 @@ export const Index = () => {
         <ReduxProvider store={store}>
           <SafeAreaProvider>
             <NavigationContainer theme={appTheme}>
-              <DrawerNavigator />
+              <BottomTabNavigator />
             </NavigationContainer>
             <StatusBar style={'auto'} />
           </SafeAreaProvider>
